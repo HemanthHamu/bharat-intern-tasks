@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" type="text/css" href="registerform.css">
+    <script src="https://kit.fontawesome.com/2300780027.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/gsap@3.10.0/dist/gsap.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <form class="signup-form" action="/register" method="post">
+            <i class="fa-solid fa-user"></i>
+            <h1>Register</h1>
+            <div class="input-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="username" maxlength="20" required>
+            </div>
+            <div class="input-group">
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="input-group">
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" maxlength="15" required>
+            </div>
+            <button type="submit">Register</button>
+        </form>
+    </div>
+    <script>
+        gsap.from('i', { opacity: 0,x:-50, duration: 2, delay: 2.5, ease: 'power4.out' });
+        gsap.from('label', { opacity: 0,y:50, duration: 2, delay: 0.5, ease: 'power4.out' });
+        gsap.from('input', { opacity: 0,y:50, duration: 2, delay: 1, ease: 'power4.out' });
+        gsap.from('button', { opacity: 0, y: -50, duration: 1, delay: 1.5, ease: 'elastic.out(1, 0.3)' });
+        gsap.from('a', { opacity: 0, y: 50, duration: 2, delay: 2, ease: 'elastic.out(1, 0.3)' });
+    </script>
+</body>
+</html>
