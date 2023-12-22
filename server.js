@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 //bodyParser for passing the incoming request body to req.body property
 const bodyParser = require('body-parser');
+const path = require('path')
 const app = express();
 const port = 3010;
 
