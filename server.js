@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+//bodyParser for passing the incoming request body to req.body property
 const bodyParser = require('body-parser');
 const app = express();
 const port = 3010;
@@ -15,7 +16,6 @@ db.once('open', () => {
 
 app.use(bodyParser.urlencoded({ extended: true }));
 
-
 // Create a user schema
 const userSchema = new mongoose.Schema({
   username: String,
@@ -27,33 +27,36 @@ const User = mongoose.model('User', userSchema);
 
 // Middleware for parsing JSON
 app.use(bodyParser.json());
-app.use(express.static('views'));
+app.use(express.static(__dirname));
 
-// Define routes
+// Handling http methods
+//this is the file that is going to be displayed when server starts
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/views/registerform.html');
+  res.sendFile(__dirname + '/registerform.html');
 });
-// post method for passing the data into the database
+
+// post method for passing the data from html form to mongoDB 
 app.post('/register', async (req, res) => {
   const { username, email, password } = req.body;
-  console.log('Received Data : ',{username,email,password})
   try {
     // Create a new user
+    // here newUser variable is an object created using User class
     const newUser = new User({
       username,
       email,
       password
     });
-    // Save the user to the database
+    // this is the method to save the user details into the database
     await newUser.save();
-
     // Respond with a success message
-    res.sendFile(__dirname + '/views/success.html');
+    //this is the file that is going to be displayed after user enters their credentials and click on signup button
+    res.sendFile(__dirname + '/success.html');
   } catch (error) {
     console.error(error);
     res.status(500).send('Error registering user');
   }
 });
+
 //get method for checking available users in the database
 app.get('/users', async (req, res) => {
   try {
@@ -70,4 +73,3 @@ app.get('/users', async (req, res) => {
 app.listen(port, () => {
   console.log(`Server is running on http://localhost:${port}`);
 });
-
