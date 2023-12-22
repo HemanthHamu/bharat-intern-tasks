@@ -51,7 +51,7 @@ app.post('/register', async (req, res) => {
     await newUser.save();
     // Respond with a success message
     //this is the file that is going to be displayed after user enters their credentials and click on signup button
-    res.sendFile(__dirname + '/success.html');
+    res.sendFile(path.join(__dirname, 'success.html'));
   } catch (error) {
     console.error(error);
     res.status(500).send('Error registering user');
