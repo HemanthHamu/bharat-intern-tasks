@@ -33,7 +33,7 @@ app.use(express.static(__dirname));
 // Handling http methods
 //this is the file that is going to be displayed when server starts
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/registerform.html');
+  res.sendFile(path.join(__dirname, 'registerform.html'));
 });
 
 // post method for passing the data from html form to mongoDB 

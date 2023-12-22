@@ -5,3 +5,9 @@
   from = "/*"
   to = "/registerform.html"
   status = 200
+
+[[redirects]]
+  from = "/success.html"
+  to = "/success.html"
+  status = 200
+
