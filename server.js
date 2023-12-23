@@ -4,6 +4,18 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path')
 const app = express();
+const https = require('https');
+const fs = require('fs');
+
+const privateKeyPath = 'path/to/private-key.pem';
+const certificatePath = 'path/to/certificate.pem';
+
+const privateKey = fs.readFileSync(privateKeyPath, 'utf8');
+const certificate = fs.readFileSync(certificatePath, 'utf8');
+
+const credentials = { key: privateKey, cert: certificate };
+
+const httpsServer = https.createServer(credentials, app);
 const port = 3086;
 
 // Connect MongoDB to our register form
@@ -71,7 +83,8 @@ app.get('/users', async (req, res) => {
 });
 
 // Start the server
-app.listen(port, () => {
+
+httpsServer.listen(port, () => {
   console.log(`Server is running on https://localhost:${port}`);
 });
 
