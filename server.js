@@ -4,7 +4,7 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path')
 const app = express();
-const port = 3010;
+const port = 3086;
 
 // Connect MongoDB to our register form
 mongoose.connect('mongodb://127.0.0.1:27017/registration_form')
